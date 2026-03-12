@@ -1,0 +1,60 @@
+steps:
+# Build and push the notes-app Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  id: Build-Notes-App
+  args:
+    - 'build'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:$COMMIT_SHA'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:latest'
+    - '.'
+  dir: 'capstone-project'
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push-Notes-App
+  args:
+    - 'push'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:$COMMIT_SHA'
+  dir: 'capstone-project'
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push-Notes-App-Latest
+  args:
+    - 'push'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:latest'
+  dir: 'capstone-project'
+
+# Build and push the api-gateway Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  id: Build-API-Gateway
+  args:
+    - 'build'
+    - '-f'
+    - 'Dockerfile.gateway'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:$COMMIT_SHA'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:latest'
+    - '.'
+  dir: 'capstone-project'
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push-API-Gateway
+  args:
+    - 'push'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:$COMMIT_SHA'
+  dir: 'capstone-project'
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push-API-Gateway-Latest
+  args:
+    - 'push'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:latest'
+  dir: 'capstone-project'
+
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:$COMMIT_SHA'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:latest'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:$COMMIT_SHA'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:latest'
