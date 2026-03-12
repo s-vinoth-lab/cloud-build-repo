@@ -52,6 +52,11 @@ steps:
     - 'push'
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:latest'
   dir: 'capstone-project'
+  
+logsBucket: 'gs://log_bucket_11'
+
+options:
+  logging: GCS_ONLY
 
 images:
   - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:$COMMIT_SHA'
