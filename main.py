@@ -52,4 +52,4 @@ def get_notes_via_gateway():
 
 if __name__ == '__main__':
     # When running locally, the API Gateway will run on a different port than the notes app
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('GATEWAY_PORT', 8081)))
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('GATEWAY_PORT', 8080)))
