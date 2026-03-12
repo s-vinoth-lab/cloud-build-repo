@@ -9,21 +9,18 @@ steps:
     - '-t'
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:latest'
     - '.'
-  dir: 'capstone-project'
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Push-Notes-App
   args:
     - 'push'
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:$COMMIT_SHA'
-  dir: 'capstone-project'
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Push-Notes-App-Latest
   args:
     - 'push'
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/notes-app:latest'
-  dir: 'capstone-project'
 
 # Build and push the api-gateway Docker image
 - name: 'gcr.io/cloud-builders/docker'
@@ -37,21 +34,18 @@ steps:
     - '-t'
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:latest'
     - '.'
-  dir: 'capstone-project'
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Push-API-Gateway
   args:
     - 'push'
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:$COMMIT_SHA'
-  dir: 'capstone-project'
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Push-API-Gateway-Latest
   args:
     - 'push'
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/capstone-repo/api-gateway:latest'
-  dir: 'capstone-project'
   
 logsBucket: 'gs://log_bucket_11'
 
